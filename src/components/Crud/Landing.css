@@ -1,0 +1,31 @@
+.rowImage {
+    display: flex;
+    width: 150px;
+}
+
+.actions {
+    display: flex;
+}
+
+.actionLinks {
+    background: transparent;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    margin: 0px 5px;
+    transition: 1s;
+    color: black;
+}
+
+.actionButtons:hover{
+    transform: scale(1.1);
+}
+
+
+table h3 {
+    width: 120px;
+}
+
+table h4 {
+    width: 120px;
+}

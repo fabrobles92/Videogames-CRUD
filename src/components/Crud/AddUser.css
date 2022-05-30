@@ -1,0 +1,30 @@
+
+form {
+   margin: 0 100px;
+}
+
+.console-list{
+   display: flex;
+   width: 100%;
+   justify-content: space-between;
+}
+
+.year-photo-group {
+   display: flex;
+}
+
+form button{
+   margin: 18.720px;
+   font-size: 25px;
+   background-color: rgb(10, 40, 62);
+   box-shadow: rgb(0 0 0 / 10%) 0px 5px 5px;
+   padding: 10px 40px;
+   color: white;
+   border: 1px solid;
+   cursor: pointer;
+   transition: 0.5s;
+}
+
+form button:hover{
+   background-color: rgb(16, 56, 85);
+}

@@ -1,0 +1,57 @@
+.field {
+    margin: 5px 15px;
+    display: flex;
+    flex-flow: column;
+    width: 100%;
+}
+
+.error {
+    color: #ff4500;
+    font-weight: 700;
+}
+
+.field label {
+    margin: 4px;
+    font-family: sans-serif;
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+
+.field input {
+    background-color: rgba(255, 255, 255, 0.164);
+    border: 1px solid #eee;
+    border-radius: 4px;
+    box-sizing: border-box;
+    color: black;
+    font-size: 26px;
+    margin-bottom: 4px;
+    outline: none;
+    padding: 10px 15px;
+    width: 100%;
+    align-self: center;
+}
+
+.field select{
+
+    background-color: rgba(255, 255, 255, 0.164);
+    border: 1px solid #eee;
+    border-radius: 4px;
+    box-sizing: border-box;
+    color: black;
+    font-size: 26px;
+    margin-bottom: 4px;
+    outline: none;
+    padding: 10px 15px;
+    width: 100%;
+    align-self: center;
+    
+}
+
+
+
+form {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+}
