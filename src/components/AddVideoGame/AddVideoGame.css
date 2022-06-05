@@ -13,6 +13,8 @@ form {
    display: flex;
 }
 
+
+
 form button{
    margin: 18.720px;
    font-size: 25px;
@@ -23,6 +25,7 @@ form button{
    border: 1px solid;
    cursor: pointer;
    transition: 0.5s;
+   border-radius: 6px;
 }
 
 form button:hover{

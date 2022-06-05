@@ -48,6 +48,20 @@
     
 }
 
+.field textarea {
+    background-color: rgba(255, 255, 255, 0.164);
+    border: 1px solid #eee;
+    border-radius: 4px;
+    box-sizing: border-box;
+    color: black;
+    font-size: 26px;
+    margin-bottom: 4px;
+    outline: none;
+    padding: 10px 15px;
+    width: 100%;
+    align-self: center;
+}
+
 
 
 form {
