@@ -25,14 +25,14 @@ const validate = (values) => {
     if(!values.description){
         errors.description = 'Required'
     }
-    if(!values.console.length){
+    if(!values.consoles.length){
         errors.console = 'Must select one!'
     }
     return errors
     }
 
 function CrudForm({videogame, handleEdit, handleAdd, id}) {    
-    const videogameObject = videogame ? {name: videogame.name, console: videogame.console, year: videogame.year, photo: '', description: videogame.description} : {name: '', console: [], year: '2022', photo: '', description: ''}
+    const videogameObject = videogame ? {name: videogame.name, consoles: videogame.consoles, year: videogame.year, photo: '', description: videogame.description} : {name: '', consoles: [], year: '2022', photo: '', description: ''}
     return (
         <Formik
         initialValues={videogameObject}
@@ -43,10 +43,10 @@ function CrudForm({videogame, handleEdit, handleAdd, id}) {
             <Input label='Name' name='name'/>
             <h3>Console</h3>
             <div className='console-list'>                
-                <CheckBox name='console' value='xbox' label='Xbox One'/>
-                <CheckBox name='console' value='switch' label='Nintendo Switch'/>
-                <CheckBox name='console' value='ps4' label='Play Station 4'/>
-                <CheckBox name='console' value='pc' label='PC'/>
+                <CheckBox name='consoles' value='xbox' label='Xbox One'/>
+                <CheckBox name='consoles' value='switch' label='Nintendo Switch'/>
+                <CheckBox name='consoles' value='ps4' label='Play Station 4'/>
+                <CheckBox name='consoles' value='pc' label='PC'/>
             </div>
             <div className='year-photo-group'>
             <Select label='Release Year' name='year'>

@@ -7,15 +7,21 @@ import './AddVideoGame.css'
 
 
 
-function AddVideoGame({rows, addData}) {
+function AddVideoGame() {
   const navigate = useNavigate()
 
-  const handleAdd = (values) => {
+  const handleAdd = async (values) => {
+    // console.log(values)
+    const response =  await fetch("/api", {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify(values)
+    })
+    console.log("data", response)
+    if(response.status === 200){
+      navigate('/')
+    }
 
-    rows.push({...values, id:  rows.length ? rows.slice(-1)[0].id + 1 : 1})
-    // console.log(rows)
-    addData(rows)
-    navigate('/')
   }
 
   return (
