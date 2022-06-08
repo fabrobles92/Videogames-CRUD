@@ -6,8 +6,5 @@ mongoose.model('videogames', new Schema({
     consoles: [],
     year: Number,
     description: String,
-    photo: {
-        data: Buffer,
-        contentType: String
-    }
+    photo: String
 }))

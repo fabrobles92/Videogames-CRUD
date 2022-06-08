@@ -1,6 +1,41 @@
-const req = require('express/lib/request')
+const fs = require('fs');
+const path = require('path');
+// const upload = require('../middlewares/multer')
 const mongoose = require('mongoose')
 const Videogames = mongoose.model('videogames')
+const Pictures = mongoose.model('pictures')
+
+// const multer = require("multer")
+// const uuidv4 = require('uuidv4')
+
+
+
+// const DIR = '/public/';
+// const storage = multer.diskStorage({
+//     destination: (req, file, cb) => {
+//         cb(null, DIR);
+//     },
+//     filename: (req, file, cb) => {
+//         const fileName = file.originalname.toLowerCase().split(' ').join('-');
+//         cb(null, uuidv4() + '-' + fileName)
+//     }
+// });
+// var upload = multer({
+//     storage: storage,
+//     fileFilter: (req, file, cb) => {
+//         if (file.mimetype == "image/png" || file.mimetype == "image/jpg" || file.mimetype == "image/jpeg") {
+//             cb(null, true);
+//         } else {
+//             cb(null, false);
+//             return cb(new Error('Only .png, .jpg and .jpeg format allowed!'));
+//         }
+//     }
+// });
+
+
+
+
+
 
 module.exports = (app) => {
     app.get('/api', async (req, res) => {
@@ -54,7 +89,21 @@ module.exports = (app) => {
             const vg = await videogame.save();
             res.send(vg)
         } catch (err) {
+            console.log(err)
             res.status(422).send(err)
         }        
     })
+
+//     app.post('/api/img', upload.single('profileImg'),  (req, res)  => {
+//         console.log(req)
+//         const url = req.protocol + '://' + req.get('host')
+//         const pictures = new Pictures({
+//             profileImg: url + '/public/' + req.file.filename
+//         })
+//         console.log(req.body)
+//     }
+    
+    
+    
+//     )
 }

@@ -4,14 +4,16 @@ const mongoose = require('mongoose')
 const keys = require("./config/keys");
 const path = require('path')
 const bodyParser = require('body-parser')
-app.use(bodyParser.json());
+
 
 require("./models/Videogame")
+require("./models/Picture")
 mongoose.connect(keys.mongoURI)
 
 //Middlewares
+app.use(bodyParser.json());
 
-
+//Routes
 require('./routes/crudRoutes')(app)
 
 if(process.env.NODE_ENV === 'production'){
