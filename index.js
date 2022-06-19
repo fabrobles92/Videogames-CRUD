@@ -11,7 +11,7 @@ require("./models/Picture")
 mongoose.connect(keys.mongoURI)
 
 //Middlewares
-app.use(bodyParser.json());
+app.use(bodyParser.json({limit: '50mb'}));
 
 //Routes
 require('./routes/crudRoutes')(app)

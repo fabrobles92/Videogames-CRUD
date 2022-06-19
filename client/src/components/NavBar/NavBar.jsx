@@ -6,7 +6,7 @@ function NavBar() {
   return (
     <nav className='navbar'>
       <Link to="/">
-        <h1>Crud Videogames</h1>
+        <h1>CRUD Videogames</h1>
       </Link>      
     </nav>
   )

@@ -6,21 +6,21 @@ const Alert = forwardRef(function Alert(props, ref) {
   });
 
 
-function SnackbarMessage({state, handleClose}) {
-    switch (state) {
+function SnackbarMessage({state}) {
+    switch (state.flag) {
         case false:                
             return(
-                <Snackbar open={true} onClose={handleClose} anchorOrigin={{ vertical: 'top', horizontal: 'center' }}>
-                    <Alert severity='error' onClose={handleClose} sx={{ width: '100%' }}>
-                        There was an error deleting your message, pls try again.
+                <Snackbar open={true} anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}>
+                    <Alert severity='error' sx={{ width: '100%' }}>
+                        {state.message}
                     </Alert>
                 </Snackbar>
             )
         case true:
             return(
-            <Snackbar open={true} onClose={handleClose} anchorOrigin={{ vertical: 'top', horizontal: 'center' }}>
-                <Alert severity='success' onClose={handleClose} sx={{ width: '100%' }}>
-                    Videogame has been deleted successfully.
+            <Snackbar open={true} anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}>
+                <Alert severity='success' sx={{ width: '100%' }}>
+                    {state.message}
                 </Alert>
             </Snackbar>
         )

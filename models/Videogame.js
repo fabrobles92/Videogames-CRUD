@@ -3,8 +3,13 @@ const {Schema} = mongoose
 
 mongoose.model('videogames', new Schema({
     name: String,
-    consoles: [],
+    consoles: Array,
     year: Number,
     description: String,
-    photo: String
+    photo: {
+        type: JSON,
+        data: Buffer,
+        contentType: String,
+        default: {data: Buffer.from([]), contentType: ''}
+    }
 }))

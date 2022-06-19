@@ -1,6 +1,5 @@
 import React from 'react'
 import { useField } from 'formik'
-import { useState } from 'react'
 
 function CheckBox({label, ...props}) {
     const [field, meta] = useField({...props, type:'checkbox'})

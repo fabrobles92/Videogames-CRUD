@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { Buffer } from 'buffer';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -18,12 +19,10 @@ import './Landing.css'
 
 export default function BasicTable() {
     const [data, setData] = useState([])
-    const [deletedID, setDeletedID] = useState([])
-    const [message, setMessage] = useState(null)
+    const [message, setMessage] = useState({flag: null, message: null})
 
     //Use Effect to fetch API Data
     useEffect(() => {
-        // console.log('Use effect utilizado 1')
         const getData = async() => {
             const response = await fetch('/api', {
                 method: 'GET',
@@ -35,38 +34,28 @@ export default function BasicTable() {
         }
         getData()
         
-    }, [deletedID])
+    }, [])
 
     //Use effect for message 
     useEffect(() => {
-        // console.log('Use effect utilizado 2', message)
         const time = setTimeout(()=>{
-            setMessage(null)
-        }, 5000)
+            setMessage({flag: null, message: null})
+        }, 3000)
         return () => clearTimeout(time)
-    }, [message])
-    
-    const handleClose = (event, reason) => {
-        // console.log(reason)
-        if (reason === 'clickaway') {
-          return;
-        }
-    
-        setMessage(null);
-      };
+    }, [message.flag])
 
     const handleDelete = async (id) => {
         const response = await fetch('/api/'+id, {
             method: 'DELETE',
             headers: {'Content-type': 'application/json'}
         })
-        console.log(response)
+        // console.log(response)
         if (response.status === 200){
             const {_id} = await response.json()
-            setDeletedID(_id)
-            setMessage(true)
+            setData(data.filter( (videogame) => videogame._id !== _id))
+            setMessage({flag: true, message: "Videogame has been deleted successfully."})
         }else{
-            setMessage(false)
+            setMessage({flag: false, message: "There was an error deleting your message, pls try again."})
         }
     }
 
@@ -86,13 +75,14 @@ export default function BasicTable() {
                 </TableRow>
                 </TableHead>
                 <TableBody>
-                {data.map((row) => (
+                {data.map((row) => (                    
                     <TableRow
                     key={row._id}
                     sx={{ '&:last-child td, &:last-child th': { border: 0 }, height: '171px' }}
                     >
                     <TableCell >
-                        <img src={row.photo} alt='' height='100' width='100'/>
+                        <img src={`data:${row.photo.contentType};base64,${Buffer.from(row.photo.data, 'base64').toString('base64')}`} alt='' height='100' width='100%'/>                        
+                        {/* {console.log(row.photo)} */}
                     </TableCell>
                     <TableCell align="center">
                         <h3>{row.name}</h3>
@@ -100,7 +90,7 @@ export default function BasicTable() {
                     <TableCell align="center">{row.year}</TableCell>
                     <TableCell align="center">
                         <ul>
-                            {row.consoles.map((console) => <li key={console}>{console}</li>)}            
+                            {row.consoles.map((console) => <li key={console}>{console}</li>)}
                         </ul>
                     </TableCell>
                     <TableCell align="center">
@@ -121,7 +111,7 @@ export default function BasicTable() {
                 </TableBody>
             </Table>        
             </TableContainer>        
-            <Link to='/add'>
+            <Link to='/add' className='addItem'>
                 <Fab
                 size="large" 
                 color='success' 
@@ -131,7 +121,7 @@ export default function BasicTable() {
                     <AddIcon />
                 </Fab>
             </Link>
-            <SnackbarMessage state={message} handleClose={handleClose}/>
+            <SnackbarMessage state={message}/>
         </Container>
     );
 }

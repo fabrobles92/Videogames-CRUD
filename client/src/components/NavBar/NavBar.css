@@ -7,9 +7,16 @@
     position: relative;
     padding: 0px 50px;
     box-shadow: rgb(0 0 0 / 10%) 0px 2px 3px;
+    background-color: white;
 }
 
 .navbar a{
     text-decoration: none;
-    color: black;
+    color: rgb(10, 40, 62);
+    font-family: 'Courier New', Courier, monospace;
+    transition: 0.5s;
+}
+
+.navbar a:hover {
+    color: rgb(27, 101, 155);;
 }

@@ -1,42 +1,41 @@
-import React from 'react'
+import {useEffect, useState} from 'react'
 import Container from '../Container/Container'
-import { useNavigate } from "react-router-dom";
 import Layout from '../Layout/Layout'
 import Form from '../Form/Form'
-import axios from 'axios';
+import SnackbarMessage from '../Landing/SnackbarMessage'
 import './AddVideoGame.css'
 
 
 
 function AddVideoGame() {
-  const navigate = useNavigate()
+  const [message, setMessage] = useState({flag: null, message: null})
 
-  const handleAdd = async (values) => {
-    console.log(values)
+  useEffect(() => {
+    const time = setTimeout(()=>{
+        setMessage({flag: null, message: null})
+    }, 3000)
+    return () => clearTimeout(time)
+}, [message.flag])
+
+  const handleAdd = async (values, resetForm) => {
+    // console.log(values)
+    const formData = new FormData()
+    for(let key in values){
+      formData.append(key, values[key])
+    }
     const response =  await fetch("/api", {
       method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify(values)
+      // headers: {'Content-Type': 'application/json'},
+      body: formData
     })
-    console.log("data", response)
+    // console.log("data", await response.json())
     if(response.status === 200){
-      navigate('/')
+      resetForm()
+      setMessage({flag: true, message: 'Videogame Added Successfully'})
     }
-    // const formData = new FormData()
-    // formData.append('profileImg', values.photo)
-
-    // const response =  await fetch("/api/img", {
-    //   method: 'POST',
-    //   headers: {'Content-Type': 'undefined'},
-    //   body: formData
-    // })
-
-    // // axios.post("/api/img", values.photo, {
-    // //     }).then(res => {
-    // //         console.log(res)
-    // //     })
-    // console.log("data", response)
-  
+    else {
+      setMessage({flag: false, message: 'There was an error adding the videogame, please try again'})
+    }
   }
 
   return (
@@ -44,6 +43,7 @@ function AddVideoGame() {
         {console.log('Renderizando AddVideoGame')}
         <Layout>
           <Form handleAdd={handleAdd}/>
+          <SnackbarMessage state={message}/>
       </Layout>
       </Container>
   )

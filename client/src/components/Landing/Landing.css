@@ -7,6 +7,15 @@
     display: flex;
 }
 
+.addItem{
+    background-color: #f5f8fa;
+}
+
+ul {
+    margin: 14px;
+    padding-left: 10px;
+}
+
 .actionLinks {
     background: transparent;
     text-decoration: none;
